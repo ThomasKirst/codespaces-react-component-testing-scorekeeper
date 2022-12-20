@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import HistoryEntry from ".";
 
-test("renders name of game and 'show score' button only", () => {
+test("renders name of game and 'display more' button only", () => {
   render(
     <HistoryEntry
       nameOfGame="Dodelido"
@@ -14,7 +14,7 @@ test("renders name of game and 'show score' button only", () => {
   );
 
   const nameOfGame = screen.getByText(/dodelido/i);
-  const button = screen.getByRole("button", { name: /show score/i });
+  const button = screen.getByRole("button", { name: /show results/i });
 
   expect(nameOfGame).toBeInTheDocument();
   expect(button).toBeInTheDocument();
@@ -41,7 +41,7 @@ test("renders player names and scores after button click", async () => {
   expect(noPlayerScore1).not.toBeInTheDocument();
   expect(noPlayerScore2).not.toBeInTheDocument();
 
-  const button = screen.getByRole("button", { name: /show score/i });
+  const button = screen.getByRole("button", { name: /show results/i });
   await userEvent.click(button);
 
   const player1 = screen.getByText(/john/i);

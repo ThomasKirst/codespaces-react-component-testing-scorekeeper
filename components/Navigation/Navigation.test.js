@@ -7,4 +7,12 @@ jest.mock("next/router", () => ({
   },
 }));
 
-test("renders with two links 'Play' and 'History'", () => {});
+test("renders with two links 'Play' and 'History'", () => {
+  render(<Navigation />);
+
+  const navigationLinks = screen.getAllByRole("link");
+
+  expect(navigationLinks.length).toBe(2);
+  expect(navigationLinks[0]).toHaveAccessibleName("Play");
+  expect(navigationLinks[1]).toHaveAccessibleName("History");
+});
